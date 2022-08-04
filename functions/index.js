@@ -3,9 +3,7 @@ export async function onRequest({request, next, env}){
 	if(url.searchParams.has('test')){
 		const lookupFile = new URL(request.url);
 		lookupFile.pathname = './test';
-		const lookupReq = new Request(lookupFile.toString(), {
-			cf: request.cf
-		});
+		const lookupReq = new Request(lookupFile.toString());
 		const asset = await env.ASSETS.fetch(lookupReq);
 		return asset;
 	}
